@@ -12,10 +12,10 @@
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>nosql2021</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Obligatorio NOSQL 2021</description>
     <properties>
         <java.version>11</java.version>
         <openapi.version>1.4.3</openapi.version>

@@ -36,7 +36,7 @@ public class PersonController {
 
   @GetMapping
   @Operation(summary = "Este endpoint lista personas")
-  ResponseEntity<List<ReadPersonDto>> listPersons(@RequestParam("age") @Min(5) int age) {
+  ResponseEntity<List<ReadPersonDto>> listPersons() {
     return ResponseEntity.ok(this.personService.listPersons());
   }
 

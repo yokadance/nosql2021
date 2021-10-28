@@ -55,9 +55,9 @@ public class DemoApplication {
       personRepository.deleteAll();
       carRepository.deleteAll();
 
-      var greg = new Person("Greg");
-      var roy = new Person("Roy");
-      var craig = new Person("Craig");
+      var greg = new Person("Greg", "greg@greg.com", "test123");
+      var roy = new Person("Roy","roy@roy.com", "test123");
+      var craig = new Person("Craig","craig@graig.com", "test123");
 
       personRepository.save(greg);
       personRepository.save(roy);
@@ -66,14 +66,14 @@ public class DemoApplication {
       //var x = personRepository.findGreg();
       //log.info("Este es GREG... {}", x.getCreatedAt());
 
-      greg.worksWith(roy);
+   /*   greg.worksWith(roy);
       personRepository.save(greg);
 
       var auto = new Car("Nose que", 4, CarType.SEDAN);
       carRepository.save(auto);
       greg.addCar(auto);
       personRepository.save(greg);
-
+*/
       var autodos = carRepository.findByMake("Nose que");
       if (autodos.isPresent()) {
         var autodosposta = autodos.get();

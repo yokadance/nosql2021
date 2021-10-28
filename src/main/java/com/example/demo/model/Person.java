@@ -15,33 +15,32 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 public class Person extends BaseEntity {
 
   private String name;
+  private String email;
+  private String password;
 
-  @Relationship(type = "TEAMMATE", direction = Relationship.Direction.INCOMING)
+/*  @Relationship(type = "TEAMMATE", direction = Relationship.Direction.INCOMING)
   private Set<Person> teammates;
 
   @Relationship(type = "HAS", direction = Relationship.Direction.OUTGOING)
-  public Set<Car> cars;
+  public Set<Car> cars;*/
 
   @Relationship(type = "IS", direction = Relationship.Direction.OUTGOING)
   public Set<Role> roles;
 
-  public Person(String name) {
+  public Person(String name, String email, String password) {
     this.name = name;
+    this.email = email;
+    this.password = password;
   }
 
-  public void worksWith(Person person) {
+  /*public void worksWith(Person person) {
     if (teammates == null) {
       teammates = new HashSet<>();
     }
     teammates.add(person);
-  }
+  }*/
 
-  public void addCar(Car car) {
-    if (cars == null) {
-      cars = new HashSet<>();
-    }
-    cars.add(car);
-  }
+
 
   public void addRole(Role role) {
     if (roles == null) {

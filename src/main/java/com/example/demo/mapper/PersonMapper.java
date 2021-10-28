@@ -9,6 +9,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface PersonMapper {
   Person createPersonDtoToPerson(CreatePersonDto createPersonDto);
-
   ReadPersonDto personToReadPersonDto(Person person);
 }

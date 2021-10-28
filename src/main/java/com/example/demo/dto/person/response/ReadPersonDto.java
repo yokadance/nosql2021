@@ -10,6 +10,8 @@ public class ReadPersonDto {
 
   private String Id;
   private String name;
+  private String email;
+  private String password;
   private Date createdAt;
   private Date updatedAt;
 }

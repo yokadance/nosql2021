@@ -36,7 +36,7 @@ public class PersonServiceTest {
   public void shouldCreateAPerson() {
     var createPersonDto = new CreatePersonDto();
     createPersonDto.setName("Test name");
-    var person = new Person(createPersonDto.getName());
+    var person = new Person(createPersonDto.getName(), createPersonDto.getEmail(), createPersonDto.getPassword());
     Mockito.when(personRepository.save(Mockito.any())).thenReturn(person);
     var result = personService.createPerson(createPersonDto);
     Assert.assertEquals(createPersonDto.getName(), result.getName());

@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreatePersonDto {
 
-  @NotBlank(message = "Name can not be empty")
+  @NotBlank(message = "all fields must be contian data")
   private String name;
+  private String email;
+  private String password;
 }
