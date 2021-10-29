@@ -4,7 +4,6 @@ import com.example.demo.dto.person.request.CreatePersonDto;
 import com.example.demo.dto.person.response.ReadPersonDto;
 import com.example.demo.exception.ApiException;
 import com.example.demo.mapper.PersonMapper;
-import com.example.demo.repository.CarRepository;
 import com.example.demo.repository.PersonRepository;
 import com.example.demo.repository.RoleRepository;
 import java.util.List;
@@ -17,18 +16,15 @@ public class PersonService {
 
   private final PersonRepository personRepository;
   private final PersonMapper personMapper;
-  private final CarRepository carRepository;
   private final RoleRepository roleRepository;
 
   public PersonService(
     PersonRepository personRepository,
     PersonMapper personMapper,
-    CarRepository carRepository,
     RoleRepository roleRepository
   ) {
     this.personRepository = personRepository;
     this.personMapper = personMapper;
-    this.carRepository = carRepository;
     this.roleRepository = roleRepository;
   }
 
@@ -44,12 +40,7 @@ public class PersonService {
   }
 
   public String associatePersonAndRol(String idPerson, String idRole) throws ApiException {
-    //var person = this.personRepository.findById(idPerson).get();
-    //var car = this.carRepository.findById(idCar).get();
 
-    //person.addCar(car);
-
-    //var personWithCar = this.b08c6054-2205-49a6-a43e-ba2b604abb57personRepository.save(person);
     System.out.println(" Verifica Persona ");
     var person =
       this.personRepository.findById(idPerson)
