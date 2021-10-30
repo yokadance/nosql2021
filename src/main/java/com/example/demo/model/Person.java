@@ -18,11 +18,7 @@ public class Person extends BaseEntity {
   private String email;
   private String password;
 
-/*  @Relationship(type = "TEAMMATE", direction = Relationship.Direction.INCOMING)
-  private Set<Person> teammates;
 
-  @Relationship(type = "HAS", direction = Relationship.Direction.OUTGOING)
-  public Set<Car> cars;*/
 
   @Relationship(type = "IS", direction = Relationship.Direction.OUTGOING)
   public Set<Role> roles;
@@ -33,13 +29,6 @@ public class Person extends BaseEntity {
     this.password = password;
   }
 
-  /*public void worksWith(Person person) {
-    if (teammates == null) {
-      teammates = new HashSet<>();
-    }
-    teammates.add(person);
-  }*/
-
 
 
   public void addRole(Role role) {
@@ -49,7 +38,7 @@ public class Person extends BaseEntity {
     roles.add(role);
   }
 
-  public void beforeSave() {
+  /*public void beforeSave() {
     System.out.println(" PRUEBA ");
-  }
+  }*/
 }
