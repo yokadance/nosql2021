@@ -28,10 +28,15 @@ public class PersonService {
     this.roleRepository = roleRepository;
   }
 
-  public ReadPersonDto createPerson(CreatePersonDto createPersonDto) {
+  public ReadPersonDto createPerson(CreatePersonDto createPersonDto) throws ApiException{
     var a = this.personMapper.createPersonDtoToPerson(createPersonDto);
-    var b = this.personRepository.save(a);
-    return this.personMapper.personToReadPersonDto(b);
+    var exist =
+            this.personRepository.findByEmail(a.getEmail());
+    if (exist.isEmpty()) {
+      var b = this.personRepository.save(a);
+      return this.personMapper.personToReadPersonDto(b);
+    }else throw new ApiException(HttpStatus.ALREADY_REPORTED, "Ya existe un usuario para ese mail");
+
   }
 
   public List<ReadPersonDto> listPersons() {
