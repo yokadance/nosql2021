@@ -13,5 +13,6 @@ public interface PersonRepository extends Neo4jRepository<Person, String> {
   //Person findGreg();
 
   Optional<Person> findByName(String name);
+  Optional<Person> findByEmail(String email);
  // List<Person> findByTeammatesName(String name);
 }
