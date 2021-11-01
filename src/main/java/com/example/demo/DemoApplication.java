@@ -45,6 +45,7 @@ public class DemoApplication {
       var greg = new Person("Greg", "greg@greg.com", "test123");
       var roy = new Person("Roy","roy@roy.com", "test123");
       var craig = new Person("Craig","craig@graig.com", "test123");
+      var mess = new Message("100","Exito!" );
 
       personRepository.save(greg);
       personRepository.save(roy);
