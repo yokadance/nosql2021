@@ -41,8 +41,8 @@ public class PersonController {
   }
 
   @PostMapping
-  @Operation(summary = "Este endpoint crea y retorna una persona")
-  ResponseEntity<ReadPersonDto> createPerson(@RequestBody @Valid CreatePersonDto createPersonDto) {
+  @Operation(summary = "Este endpoint crea una persona")
+  ResponseEntity<ReadPersonDto> createPerson(@RequestBody @Valid CreatePersonDto createPersonDto) throws ApiException {
     var persistedPerson = this.personService.createPerson(createPersonDto);
     return ResponseEntity.ok(persistedPerson);
   }

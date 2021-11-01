@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.person.request.CreatePersonDto;
+import com.example.demo.exception.ApiException;
 import com.example.demo.mapper.PersonMapper;
 import com.example.demo.model.Person;
 import com.example.demo.repository.PersonRepository;
@@ -33,7 +34,7 @@ public class PersonServiceTest {
   private final EasyRandom ezRandom = new EasyRandom();
 
   @Test
-  public void shouldCreateAPerson() {
+  public void shouldCreateAPerson() throws ApiException {
     var createPersonDto = new CreatePersonDto();
     createPersonDto.setName("Test name");
     var person = new Person(createPersonDto.getName(), createPersonDto.getEmail(), createPersonDto.getPassword());
