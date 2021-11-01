@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.model.Message;
 import com.example.demo.model.Person;
 import com.example.demo.model.UserContext;
 import com.example.demo.repository.PersonRepository;
