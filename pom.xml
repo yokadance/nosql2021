@@ -203,7 +203,7 @@ https://mvnrepository.com/artifact/com.google.firebase/firebase-admin
                                 <rule>
                                     <includes>
                                         <include
-                                        >com.example.demo.service</include>
+                                        >com.example.nosql.service</include>
                                     </includes>
                                     <element>PACKAGE</element>
                                     <limits>
