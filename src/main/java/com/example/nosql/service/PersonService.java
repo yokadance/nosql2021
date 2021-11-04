@@ -2,6 +2,7 @@ package com.example.nosql.service;
 
 import com.example.nosql.dto.person.request.CreatePersonDto;
 import com.example.nosql.dto.person.response.ReadPersonDto;
+import com.example.nosql.dto.role.response.ReadRoleDto;
 import com.example.nosql.exception.ApiException;
 import com.example.nosql.mapper.PersonMapper;
 import com.example.nosql.repository.MessageRepository;
@@ -11,6 +12,7 @@ import com.example.nosql.repository.RoleRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.google.api.gax.rpc.ApiExceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -50,27 +52,29 @@ public class PersonService {
         return persons.stream().map(this.personMapper::personToReadPersonDto).collect(Collectors.toList());
     }
 
-    public String associatePersonAndRol(String email, String idRole) throws ApiException {
+    public String associatePersonAndRol(String email, List<String> roles) throws ApiException {
 
         System.out.println(" Verifica Persona ");
         var person =
                 this.personRepository.findByEmail(email).orElseThrow(()-> new ApiException(HttpStatus.NOT_FOUND, this.messageRepository.findMessagesByErrorCode("102").get().getMessage()));
-                //this.personRepository.findById(idPerson)
-                 //       .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, this.messageRepository.findMessagesByErrorCode("102").get().getMessage()));
 
-        System.out.println(" Verifica Rol ");
-        var role =
-                this.roleRepository.findById(idRole)
-                        .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, this.messageRepository.findMessagesByErrorCode("103").get().getMessage()));
+        System.out.println(" La persona encontradas ES: "+ person.getEmail() +" Y EL RECIBIDO ERA "+ email);
+        for (String rol : roles) {
+            System.out.println(" Verifica Rol ");
+            var role =
+                    this.roleRepository.findByName(rol)
+                            .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, this.messageRepository.findMessagesByErrorCode("103").get().getMessage()));
 
-        //if (person.getRoles().contains(role)) {
-        //  throw new ApiException(HttpStatus.CONFLICT, "Ya tiene el rol agregado");
-        //}
-        System.out.println(" Agrega Rol a Persona ");
-        person.addRole(role);
-        System.out.println(" Agrego Rol a Persona ");
-        var personWithRole = this.personRepository.save(person);
-        System.out.println(" GuardO Persona ");
+
+            System.out.println(" eL ROL ENCONTRADO ES: "+ role.getName() +" Y EL RECIBIDO ERA "+ rol);
+            person.addRole(role);
+            var personWithRole = this.personRepository.save(person);
+            System.out.println(" GuardO Persona ");
+
+
+
+
+        }
         return "OK";
     }
 

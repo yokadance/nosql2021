@@ -1,8 +1,10 @@
 package com.example.nosql.controller;
 
 import com.example.nosql.dto.ApiErrorResponse;
+import com.example.nosql.dto.person.request.AssociatePersonRoleDto;
 import com.example.nosql.dto.person.request.CreatePersonDto;
 import com.example.nosql.dto.person.response.ReadPersonDto;
+import com.example.nosql.dto.role.response.ReadRoleDto;
 import com.example.nosql.exception.ApiException;
 import com.example.nosql.model.UserContext;
 import com.example.nosql.service.PersonService;
@@ -47,7 +49,7 @@ public class PersonController {
     return ResponseEntity.ok(persistedPerson);
   }
 
-  @PostMapping("/{email}/roleAdd/{idRol}")
+  /*@PostMapping("/{email}/roleAdd/{idRol}")
   @Operation(summary = "Este endpoint asocia personas con roles")
   @ApiResponses(
     value = {
@@ -68,10 +70,32 @@ public class PersonController {
   public String associatePersonAndRole(@PathVariable String email, @PathVariable String idRol) throws ApiException {
     this.personService.associatePersonAndRol(email, idRol);
     return "Email: " + email + " IdRol: " + idRol;
+  }*/
+
+
+  @PostMapping("/roleAdd")
+  @Operation(summary = "Este endpoint asocia personas con roles")
+  @ApiResponses(
+          value = {
+                  @ApiResponse(
+                          responseCode = "404",
+                          content = {
+                                  @Content(mediaType = "application/json", schema = @Schema(implementation = ApiErrorResponse.class))
+                          }
+                  ),
+                  @ApiResponse(
+                          responseCode = "409",
+                          content = {
+                                  @Content(mediaType = "application/json", schema = @Schema(implementation = ApiErrorResponse.class))
+                          }
+                  )
+          }
+  )
+  public String associatePersonAndRole(@RequestBody @Valid AssociatePersonRoleDto associatePersonRoleDto) throws ApiException {
+
+    this.personService.associatePersonAndRol(associatePersonRoleDto.getEmail(), associatePersonRoleDto.getNameRoles());
+    return "ok " ; //+ email + " IdRol: " + idRol;
   }
-
-
-
 
 
   @PostMapping("/{email}/roleRemove/{idRol}")
