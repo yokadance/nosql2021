@@ -68,6 +68,8 @@ public class PersonService {
 
             System.out.println(" eL ROL ENCONTRADO ES: "+ role.getName() +" Y EL RECIBIDO ERA "+ rol);
             person.addRole(role);
+            System.out.println(" agrego rol ");
+
             var personWithRole = this.personRepository.save(person);
             System.out.println(" GuardO Persona ");
 
@@ -79,16 +81,17 @@ public class PersonService {
     }
 
 
-    public String deleteRolToPerson(String email, String idRole) throws ApiException {
+    public String deleteRolToPerson(String email, String nameRol) throws ApiException {
 
         System.out.println(" Verifica Persona ");
         var person =
                 this.personRepository.findByEmail(email).orElseThrow(()-> new ApiException(HttpStatus.NOT_FOUND, this.messageRepository.findMessagesByErrorCode("102").get().getMessage()));
         System.out.println(" Verifica Rol ");
         var role =
-                this.roleRepository.findById(idRole)
+                this.roleRepository.findByName(nameRol)
                         .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, this.messageRepository.findMessagesByErrorCode("103").get().getMessage()));
-        personRepository.removeRole(email, idRole);
+        System.out.println(" VerificO Rol ");
+        this.personRepository.removeRoleForName(email, nameRol);
         return "OK";
     }
 }

@@ -98,7 +98,7 @@ public class PersonController {
   }
 
 
-  @PostMapping("/{email}/roleRemove/{idRol}")
+  @DeleteMapping("/{email}/roleRemove/{nameRol}")
   @Operation(summary = "Este endpoint elimina un rol a una persona que posee uno.")
   @ApiResponses(
           value = {
@@ -116,8 +116,8 @@ public class PersonController {
                   )
           }
   )
-  public String deleteRolToPerson(@PathVariable String email, @PathVariable String idRol) throws ApiException {
-    this.personService.deleteRolToPerson(email, idRol);
-    return "Email: " + email + " IdRol: " + idRol;
+  public String deleteRolToPerson(@PathVariable String email, @PathVariable String nameRol) throws ApiException {
+    this.personService.deleteRolToPerson(email, nameRol);
+    return "Email: " + email + " nameRol: " + nameRol;
   }
 }

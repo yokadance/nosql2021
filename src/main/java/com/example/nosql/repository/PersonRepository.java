@@ -13,8 +13,12 @@ public interface PersonRepository extends Neo4jRepository<Person, String> {
 
   Optional<Person> findByName(String name);
   Optional<Person> findByEmail(String email);
-  //@Query("MATCH (u:User{canonicalName:$canonicalName})-[g:USES]->(:GitPlatform) DELETE g")
-  @Query("MATCH (p:Person {email: $email})-[r:IS]->(:Role{id: $id}) DELETE r")
-  void removeRole(String email, String id);
+
+
+  @Query("MATCH (p:Person {email: $email})-[r:IS]->(m:Role{id: $id}) DETACH DELETE r")
+  void removeRoleForId(String email, String id);
+
+  @Query("MATCH (p:Person {email: $email})-[r:IS]->(m:Role{name: $name}) DETACH DELETE r")
+  void removeRoleForName(String email, String name);
 
 }

@@ -1,5 +1,6 @@
 package com.example.nosql.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +17,7 @@ public class Role extends BaseEntity {
   private String name;
 
   @Relationship(type = "IS", direction = Relationship.Direction.INCOMING)
-  public Set<Person> person;
+  public Set<Person> person= new HashSet<>();
 
   public Role(String name) {
     this.name = name;
