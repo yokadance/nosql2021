@@ -94,4 +94,20 @@ public class PersonService {
         this.personRepository.removeRoleForName(email, nameRol);
         return "OK";
     }
+
+    public String deleteAllRolToPerson(String email, List<String>roles) throws ApiException {
+
+        System.out.println(" Verifica Persona ");
+        var person =
+                this.personRepository.findByEmail(email).orElseThrow(()-> new ApiException(HttpStatus.NOT_FOUND, this.messageRepository.findMessagesByErrorCode("102").get().getMessage()));
+        System.out.println(" Verifica Rol ");
+        for(String nameRol : roles) {
+            var role =
+                    this.roleRepository.findByName(nameRol)
+                            .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, this.messageRepository.findMessagesByErrorCode("103").get().getMessage()));
+            System.out.println(" VerificO Rol ");
+            this.personRepository.removeRoleForName(email, nameRol);
+        }
+        return "OK";
+    }
 }

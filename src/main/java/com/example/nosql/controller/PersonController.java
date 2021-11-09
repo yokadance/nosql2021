@@ -120,4 +120,30 @@ public class PersonController {
     this.personService.deleteRolToPerson(email, nameRol);
     return "Email: " + email + " nameRol: " + nameRol;
   }
+
+    @DeleteMapping("/roleRemoveAll")
+    @Operation(summary = "Este endpoint elimina un rol a una persona que posee uno.")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "404",
+                            content = {
+                                    @Content(mediaType = "application/json", schema = @Schema(implementation = ApiErrorResponse.class))
+                            }
+                    ),
+                    @ApiResponse(
+                            responseCode = "409",
+                            content = {
+                                    @Content(mediaType = "application/json", schema = @Schema(implementation = ApiErrorResponse.class))
+                            }
+                    )
+            }
+    )
+    public String deleteAllRolToPerson(@RequestBody @Valid AssociatePersonRoleDto associatePersonRoleDto) throws ApiException {
+        this.personService.deleteAllRolToPerson(associatePersonRoleDto.getEmail(), associatePersonRoleDto.getNameRoles());
+        return "Email: " + associatePersonRoleDto.getEmail() + " nameRol: " + associatePersonRoleDto.getNameRoles();
+    }
+
 }
+
+
