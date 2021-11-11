@@ -33,7 +33,7 @@ public class StartApplication {
   public static void main(String[] args) {
     SpringApplication.run(StartApplication.class, args);
   }
-
+///
   @Bean
   @RequestScope
   public UserContext requestUserDataContext() {
@@ -46,10 +46,11 @@ public class StartApplication {
       personRepository.deleteAll();
       messageRepository.deleteAll();
 
-//
+
       var greg = new Person("Greg", "greg@greg.com", "test123");
       var roy = new Person("Roy","roy@roy.com", "test123");
       var craig = new Person("Craig","craig@craig.com", "test123");
+
       var mess = new Message("101","Error! Este email ya esta registrado" );
       var mess1 = new Message("102","Error! Ese usuario no encontrado, verifique su email" );
       var mess2 = new Message("103","Error! No posee ese rol asignado" );
