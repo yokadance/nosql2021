@@ -47,7 +47,6 @@ public class StartApplication {
       messageRepository.deleteAll();
 
 
-//commit para test
       var greg = new Person("Greg", "greg@greg.com", "test123");
       var roy = new Person("Roy","roy@roy.com", "test123");
       var craig = new Person("Craig","craig@craig.com", "test123");
